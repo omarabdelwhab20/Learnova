@@ -25,14 +25,9 @@ export class User {
 
   @Column({
     type: 'varchar',
-    nullable: false,
+    unique: true,
   })
-  firstName: string;
-
-  @Column({
-    type: 'varchar',
-  })
-  lastName: string;
+  userName: string;
 
   @Column({
     type: 'varchar',
@@ -59,6 +54,12 @@ export class User {
     default: UserStatus.PENDING,
   })
   status: UserStatus;
+
+  @Column({
+    type: 'varchar',
+    nullable: true,
+  })
+  profileUrl: string;
 
   @Column({
     type: 'varchar',

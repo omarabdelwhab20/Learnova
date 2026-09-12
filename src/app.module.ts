@@ -5,6 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { UsersModule } from './users/users.module';
+import { User } from './users/entities/user.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -21,6 +23,7 @@ import { UsersModule } from './users/users.module';
         password: confgiService.get('PG_PASS'),
         database: confgiService.get('PG_DBNAME'),
         synchronize: true,
+        autoLoadEntities: true,
       }),
     }),
 
@@ -32,6 +35,8 @@ import { UsersModule } from './users/users.module';
     ]),
 
     UsersModule,
+
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
